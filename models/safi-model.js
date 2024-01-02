@@ -23,7 +23,7 @@ class SafiModel {
             const result = await pool.query(querys.obtainAuthorizedInvoices());
             return result.recordset;
         } catch (error) {
-            console.error('Error al obtener Facturas:', error);
+            console.error('Error al obtener Facturas Autorizadas:', error);
             throw error;
         }
     }
@@ -45,7 +45,7 @@ class SafiModel {
             const result = await pool.query(querys.getClientId(id));
             return result.recordset;
         } catch (error) {
-            console.error('Error al obtener Facturas:', error);
+            console.error('Error al obtener Cliente:', error);
             throw error;
         }
     }
@@ -56,7 +56,7 @@ class SafiModel {
             const result = await pool.query(querys.getInvoicesPerCustomer(id));
             return result.recordset;
         } catch (error) {
-            console.error('Error al obtener Facturas:', error);
+            console.error('Error al obtener Facturas por Cliente:', error);
             throw error;
         }
     }
