@@ -49,6 +49,17 @@ class SafiModel {
             throw error;
         }
     }
+    
+    async getInvoicesPerCustomer(id) {
+        try {
+            const pool = await sql.connect(config);
+            const result = await pool.query(querys.getInvoicesPerCustomer(id));
+            return result.recordset;
+        } catch (error) {
+            console.error('Error al obtener Facturas:', error);
+            throw error;
+        }
+    }
 
 }
 

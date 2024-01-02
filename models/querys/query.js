@@ -58,6 +58,10 @@ class Query{
     getClientId(id){
         return `select * from CXCDIR where Clave = '${id}'`;
     }
+    
+    getInvoicesPerCustomer(id){
+        return `select * from Fac_Comprobante_Historial where PersonaId = '${id}'`;
+    }
 
 }
 

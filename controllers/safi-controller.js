@@ -43,9 +43,20 @@ const getClientId = async (req = request, res = response) => {
     }
 }
 
+const getInvoicesPerCustomer = async (req = request, res = response) => {
+    try {
+        const { id } = req.params;
+        const clients = await safi.getInvoicesPerCustomer(id);
+        res.json(clients);
+    } catch (error) {
+        res.status(500).send('Error interno del servidor');
+    }
+}
+
 module.exports = {
     getAllInvoices,
     getInvoiceId,
     obtainAuthorizedInvoices,
-    getClientId
+    getClientId,
+    getInvoicesPerCustomer
 }
