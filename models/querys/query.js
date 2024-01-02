@@ -60,7 +60,7 @@ class Query{
     }
     
     getInvoicesPerCustomer(id){
-        return `select * from Fac_Comprobante_Historial where PersonaId = '${id}'`;
+        return `select * from SafiBDDParametros_pruebas..Fac_Comprobante_Historial where PersonaId = '${id}'`;
     }
 
 }
