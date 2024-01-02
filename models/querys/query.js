@@ -14,7 +14,7 @@ class Query{
         EstadoFirmador,
         MensajeProceso,
         EstadoComprobanteId,
-        CONVERT(varchar,FechaCreacion,20) as [YYYY-MM-DD],
+        FORMAT(FechaAutorizacion, 'yyyy-MM-dd') AS FechaAutorizacion,
         FechaActualizacion,
         (CASE EstadoEmail WHEN 0 THEN 'PENDIENTE' WHEN 1 THEN 'ENVIADO' WHEN 2 THEN 'ERROR' END) as 'Estado_Envío_Email',
         FechaNotificacion as 'Fecha_Envío_Email',
@@ -39,7 +39,7 @@ class Query{
         EstadoFirmador,
         MensajeProceso,
         EstadoComprobanteId,
-        CONVERT(varchar,FechaCreacion,20) as [YYYY-MM-DD],
+        FORMAT(FechaAutorizacion, 'yyyy-MM-dd') AS FechaAutorizacion,
         FechaActualizacion,
         (CASE EstadoEmail WHEN 0 THEN 'PENDIENTE' WHEN 1 THEN 'ENVIADO' WHEN 2 THEN 'ERROR' END) as 'Estado_Envío_Email',
         FechaNotificacion as 'Fecha_Envío_Email',
@@ -52,7 +52,22 @@ class Query{
     }
 
     getInvoiceId(id){
-        return `select * from SafiBDDParametros_pruebas..Fac_Comprobante_Historial where documentoid = ${id}`;
+        return `select 
+		CXCDIR.Nombre,
+		CXCDIR.Direc1,
+		CXCDIR.Ruc,
+		CXCDIR.Email,
+        ClaveAcceso,
+        (CASE TipoDocumento WHEN 1 THEN 'FACTURA' WHEN 4 THEN 'NOTA DE CRÉDITO' WHEN 6 THEN 'GUÍA DE REMISIÓN' WHEN 7 THEN 'COMPROBANTE DE RETENCIÓN' WHEN 3 THEN 'LIQUIDACION COMPRA' END) as 'TipoDocumento',
+        SUBSTRING(ClaveAcceso,25,15) as Num_Doc,
+        EstadoFirmador,
+        NumeroAutorizacion,
+        FechaAutorizacion,
+        FORMAT(FechaAutorizacion, 'yyyy-MM-dd') AS FechaAutorizacion,
+        XmlOriginal
+        from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
+		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
+		where documentoid = '${id}'`
     }
 
     getClientId(id){
@@ -65,7 +80,7 @@ class Query{
         (CASE TipoDocumento WHEN 1 THEN 'FACTURA' WHEN 4 THEN 'NOTA DE CRÉDITO' WHEN 6 THEN 'GUÍA DE REMISIÓN' WHEN 7 THEN 'COMPROBANTE DE RETENCIÓN' WHEN 3 THEN 'LIQUIDACION COMPRA' END) as 'TipoDocumento',
         SUBSTRING(ClaveAcceso,25,15) as Num_Doc,
         EstadoFirmador,
-        CONVERT(varchar,FechaCreacion,20) as [YYYY-MM-DD],
+        FORMAT(FechaAutorizacion, 'yyyy-MM-dd') AS FechaAutorizacion,
         documentoid
         from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
 		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
@@ -84,7 +99,7 @@ class Query{
         EstadoFirmador,
         NumeroAutorizacion,
         FechaAutorizacion,
-        FechaCreacion,
+        FORMAT(FechaAutorizacion, 'yyyy-MM-dd') AS FechaAutorizacion,
         XmlOriginal
         from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
 		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
