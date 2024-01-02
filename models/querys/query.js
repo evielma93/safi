@@ -55,6 +55,10 @@ class Query{
         return `select * from SafiBDDParametros_pruebas..Fac_Comprobante where documentoid = ${id}`;
     }
 
+    getClientId(id){
+        return `select * from CXCDIR where Clave = '${id}'`;
+    }
+
 }
 
 module.exports = {
