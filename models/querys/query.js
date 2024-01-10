@@ -20,8 +20,8 @@ class Query{
         FechaNotificacion as 'Fecha_Envío_Email',
         documentoid
         from 
-        ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante inner join
-            ${process.env.DATABASE_SAFIBDD}..GenEmpresa on ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante.Ruc=${process.env.DATABASE_SAFIBDD}..GenEmpresa.Ruc
+        SafiBDDParametros_pruebas..Fac_Comprobante inner join
+            SafiBDDParametros_pruebas..GenEmpresa on SafiBDDParametros_pruebas..Fac_Comprobante.Ruc=SafiBDDParametros_pruebas..GenEmpresa.Ruc
         where TipoDocumento = 1 and ClaveAcceso like '%001024%'
         order by Empresa`;
     }
@@ -45,8 +45,8 @@ class Query{
         FechaNotificacion as 'Fecha_Envío_Email',
         documentoid
         from 
-        ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial inner join
-            ${process.env.DATABASE_SAFIBDD}..GenEmpresa on ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial.Ruc=${process.env.DATABASE_SAFIBDD}..GenEmpresa.Ruc
+        SafiBDDParametros_pruebas..Fac_Comprobante_Historial inner join
+            SafiBDDParametros_pruebas..GenEmpresa on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.Ruc=SafiBDDParametros_pruebas..GenEmpresa.Ruc
         where TipoDocumento = 1 and ClaveAcceso like '%001024%'
         order by Empresa`;
     }
@@ -66,8 +66,8 @@ class Query{
         FechaAutorizacion,
         FORMAT(FechaCreacion, 'yyyy-MM-dd') AS FechaCreacion,
         XmlOriginal
-        from ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial 
-		inner join ${process.env.DATABASE_SAFI3}..CXCDIR on ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial.PersonaId = ${process.env.DATABASE_SAFI3}..CXCDIR.CodigoID
+        from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
+		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
 		where documentoid = '${id}'`
     }
 
@@ -83,9 +83,9 @@ class Query{
         EstadoFirmador,
         FORMAT(FechaCreacion, 'yyyy-MM-dd') AS FechaCreacion,
         documentoid
-        from ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial 
-		inner join ${process.env.DATABASE_SAFI3}..CXCDIR on ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial.PersonaId = ${process.env.DATABASE_SAFI3}..CXCDIR.CodigoID
-		where ${process.env.DATABASE_SAFI3}..CXCDIR.Clave = '${id}' `;
+        from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
+		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
+		where V1791297954001_SAFI_3_pruebas..CXCDIR.Clave = '${id}' `;
     }
     
     getInvoicesPerCustomeeer(id){
@@ -102,9 +102,9 @@ class Query{
         FechaAutorizacion,
         FORMAT(FechaCreacion, 'yyyy-MM-dd') AS FechaCreacion,
         XmlOriginal
-        from ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial 
-		inner join ${process.env.DATABASE_SAFI3}..CXCDIR on ${process.env.DATABASE_SAFIBDD}..Fac_Comprobante_Historial.PersonaId = ${process.env.DATABASE_SAFI3}..CXCDIR.CodigoID
-		where ${process.env.DATABASE_SAFI3}..CXCDIR.Clave = '${id}' `;
+        from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
+		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
+		where V1791297954001_SAFI_3_pruebas..CXCDIR.Clave = '${id}' `;
     }
 
     getServices(){
@@ -112,7 +112,7 @@ class Query{
         [IMProducto] as Codigo
         ,[IMNombre] as Descripcion
         ,FORMAT(IMFecha, 'yyyy-MM-dd') AS Fecha
-        FROM [${process.env.DATABASE_SAFI3}].[dbo].[INVMAE] `;
+        FROM [V1791297954001_SAFI_3_pruebas].[dbo].[INVMAE] `;
     }
 
     getServicesByLike(data){
@@ -120,7 +120,7 @@ class Query{
         [IMProducto] as Codigo
         ,[IMNombre] as Descripcion
         ,FORMAT(IMFecha, 'yyyy-MM-dd') AS Fecha
-        FROM [${process.env.DATABASE_SAFI3}].[dbo].[INVMAE] 
+        FROM [V1791297954001_SAFI_3_pruebas].[dbo].[INVMAE] 
         where IMNombre like '%${data}%'`;
     }
 
