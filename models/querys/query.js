@@ -121,7 +121,7 @@ class Query{
         ,[IMNombre] as Descripcion
         ,FORMAT(IMFecha, 'yyyy-MM-dd') AS Fecha
         FROM [V1791297954001_SAFI_3_pruebas].[dbo].[INVMAE] 
-        where IMNombre like '%${data}%'`;
+        where IMNombre like '%${data}%' or IMProducto like '%${data}%' `;
     }
 
 }
