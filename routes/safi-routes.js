@@ -5,7 +5,8 @@ const {
     getInvoiceId,
     obtainAuthorizedInvoices,
     getClientId,
-    getInvoicesPerCustomer
+    getInvoicesPerCustomer,
+    getServices
  } = require('../controllers/safi-controller');
 
 const router = Router();
@@ -16,6 +17,7 @@ router.get('/obtainAuthorizedInvoices', obtainAuthorizedInvoices);
 router.get('/getInvoice/:id', getInvoiceId);
 router.get('/getInvoicesPerCustomer/:id', getInvoicesPerCustomer);
 router.get('/getClient/:id', getClientId);
+router.get('/getServices', getServices);
 
 
 

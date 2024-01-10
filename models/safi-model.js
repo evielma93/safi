@@ -60,6 +60,17 @@ class SafiModel {
             throw error;
         }
     }
+    
+    async getServices() {
+        try {
+            const pool = await sql.connect(config);
+            const result = await pool.query(querys.getServices());
+            return result.recordset;
+        } catch (error) {
+            console.error('Error al obtener Servicios: ', error);
+            throw error;
+        }
+    }
 
 }
 

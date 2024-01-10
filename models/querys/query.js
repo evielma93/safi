@@ -107,6 +107,14 @@ class Query{
 		where V1791297954001_SAFI_3_pruebas..CXCDIR.Clave = '${id}' `;
     }
 
+    getServices(){
+        return `SELECT 
+        [IMProducto] as Codigo
+        ,[IMNombre] as Descripcion
+        ,FORMAT(IMFecha, 'yyyy-MM-dd') AS Fecha
+        FROM [V1791297954001_SAFI_3_pruebas].[dbo].[INVMAE] `;
+    }
+
 }
 
 module.exports = {
