@@ -71,7 +71,7 @@ class SafiModel {
             throw error;
         }
     }
-
+    
     async getServicesByLike(id) {
         try {
             const pool = await sql.connect(config);
@@ -79,6 +79,17 @@ class SafiModel {
             return result.recordset;
         } catch (error) {
             console.error('Error al obtener Facturas por Cliente:', error);
+            throw error;
+        }
+    }
+    
+    async getUges() {
+        try {
+            const pool = await sql.connect(config);
+            const result = await pool.query(querys.getUges());
+            return result.recordset;
+        } catch (error) {
+            console.error('Error al obtener UGES: ', error);
             throw error;
         }
     }

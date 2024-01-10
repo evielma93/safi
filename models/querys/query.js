@@ -124,6 +124,10 @@ class Query{
         where IMNombre like '%${data}%' or IMProducto like '%${data}%' `;
     }
 
+    getUges(){
+        return `select * from V1791297954001_SAFI_3_pruebas..CNTCC where Padre = 0 `;
+    }
+
 }
 
 module.exports = {
