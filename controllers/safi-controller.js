@@ -62,11 +62,22 @@ const getServices = async (req = request, res = response) => {
     }
 }
 
+const getServicesByLike = async (req = request, res = response) => {
+    try {
+        const { id } = req.params;
+        const service = await safi.getServicesByLike(id);
+        res.json(service);
+    } catch (error) {
+        res.status(500).send('Error interno del servidor');
+    }
+}
+
 module.exports = {
     getAllInvoices,
     getInvoiceId,
     obtainAuthorizedInvoices,
     getClientId,
     getInvoicesPerCustomer,
-    getServices
+    getServices,
+    getServicesByLike
 }

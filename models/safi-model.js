@@ -72,6 +72,17 @@ class SafiModel {
         }
     }
 
+    async getServicesByLike(id) {
+        try {
+            const pool = await sql.connect(config);
+            const result = await pool.query(querys.getServicesByLike(id));
+            return result.recordset;
+        } catch (error) {
+            console.error('Error al obtener Facturas por Cliente:', error);
+            throw error;
+        }
+    }
+
 }
 
 module.exports = SafiModel;
