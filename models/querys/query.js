@@ -78,11 +78,17 @@ class Query{
     getInvoicesPerCustomer(id){
         return `select 
 		CXCDIR.Nombre,
+		CXCDIR.Direc1,
+		CXCDIR.Ruc,
+		CXCDIR.Email,
+        ClaveAcceso,
         (CASE TipoDocumento WHEN 1 THEN 'FACTURA' WHEN 4 THEN 'NOTA DE CRÉDITO' WHEN 6 THEN 'GUÍA DE REMISIÓN' WHEN 7 THEN 'COMPROBANTE DE RETENCIÓN' WHEN 3 THEN 'LIQUIDACION COMPRA' END) as 'TipoDocumento',
         SUBSTRING(ClaveAcceso,25,15) as Num_Doc,
         EstadoFirmador,
+        NumeroAutorizacion,
+        FechaAutorizacion,
         FORMAT(FechaCreacion, 'yyyy-MM-dd') AS FechaCreacion,
-        documentoid
+        XmlOriginal
         from SafiBDDParametros_pruebas..Fac_Comprobante_Historial 
 		inner join V1791297954001_SAFI_3_pruebas..CXCDIR on SafiBDDParametros_pruebas..Fac_Comprobante_Historial.PersonaId = V1791297954001_SAFI_3_pruebas..CXCDIR.CodigoID
 		where V1791297954001_SAFI_3_pruebas..CXCDIR.Clave = '${id}' `;
